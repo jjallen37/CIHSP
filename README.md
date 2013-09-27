@@ -1,4 +1,4 @@
 CIHSP
 =====
 
-A website for locating and reviewing websites Chapel Hill, NC.
+A website for locating and reviewing bathrooms in Chapel Hill, NC.
