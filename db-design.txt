@@ -1,0 +1,21 @@
+User
+    uid : INT, primary key
+    username : CHAR(25), username
+    pw : CHAR(25), md5 password    
+
+Bathroom
+    bid : INT, primary key
+    roomNumber : CHAR(25), also primary key? 
+    building : CHAR(25), Building name
+    floor : INT, Optional?
+    description : CHAR(255)
+    lat : FLOAT, later addition?
+    lon : FLOAT, later addition?
+    
+Review
+    uid : INT, primary key, foreign key to the User table
+    bid : INT, primary key, foreign key to the Bathroom table
+    subject : VARCHAR(25)
+    text : VARCHAR(255)
+    rating : INT
+    time : TIMESTAMP()
