@@ -15,6 +15,7 @@ $(document).on("click", "#submit", function(){
 		$("#bathroom-list").empty();
 		$("#bathroom-list").hide();
 	} else {
-		selectedRoom = building + " " + floor + " " + room
+		selectedRoom = building + " " + floor + " " + room;
+		console.log(selectedRoom);
 	}
 });
