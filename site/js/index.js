@@ -1,3 +1,5 @@
+var selectedRoom;
+
 $(document).ready(function() {
 	console.log("Page loaded.")
 });
@@ -12,5 +14,7 @@ $(document).on("click", "#submit", function(){
 		//console.log("Values are default");
 		$("#bathroom-list").empty();
 		$("#bathroom-list").hide();
+	} else {
+		selectedRoom = building + " " + floor + " " + room
 	}
 });
