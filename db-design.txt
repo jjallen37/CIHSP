@@ -11,6 +11,7 @@ Bathrooms
     
 Reviews
     bid : INT, primary key, foreign key to the Bathroom table
+    name: VARCHAR(25)
     subject : VARCHAR(25)
     text : VARCHAR(255)
     cleanliness : INT (MAX = 5)
