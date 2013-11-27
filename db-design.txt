@@ -1,5 +1,5 @@
-Going to generate the Bathrooms database ourselves (for now)
 
+Going to generate the Bathrooms database ourselves (for now)
 Database schemas  
 
 Bathrooms
