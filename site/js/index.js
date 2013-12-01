@@ -1,27 +1,47 @@
-var cu
-var buildings = new Array();
+var base_url = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/";
+var clear = true;
+
+var bathrooms = new Array();
 
 $(document).ready(function() {
-	console.log("Page loaded.")
-
-	$.ajax()
-});
+$.ajax(base_url + "/bathrooms.php",
+	       {type: "GET",
+		       dataType: "json",
+		       success: function(bath_ids, status, jqXHR) {
+		       for (var i=0; i<bath_ids.length; i++) {
+			   addBathroom(bath_ids[i]);
+		       }
+		   }
+	       });});
 
 $(document).on("click", "#submit", function(){
 	var building = $("#b-building").val();
 	var floor = $("#b-floor").val();
 
-	//If all values are set back to default value
-	if(building==="None Selected" && floor==="None Selected"){
-		console.log("Values are default");
-		$("#bathroom-list").empty();
-		$("#bathroom-list").toggleClass("hidden");
-	} else {
-		selectedRoom = building + " " + floor;
-		console.log(selectedRoom);
-	}
 });
 
 $(document).on("change", "#b-building", function(){
 
 });
+
+var addBathroom = function(id){
+
+// $.ajax(url_base + "/todo.php/" + id,
+// {type: "GET",
+//  dataType: "json",
+//  success: function(todo_json, status, jqXHR) {
+// 	var t = new Todo(todo_json);
+// 	$('#todo_list').append(t.makeCompactDiv());
+//     }
+// });
+
+	$.ajax(base_url + "/php/bathrooms.php" + id,{
+		type: "GET",
+		dataType: "json",
+		success: function(bathroom_json, status, jqXHR) {
+			bathrooms.add(bathroom_json);
+		}
+
+	});
+}
+
