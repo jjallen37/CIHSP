@@ -85,5 +85,3 @@ class Review
 	  return $json_rep;
 	}
 }
-
-?>

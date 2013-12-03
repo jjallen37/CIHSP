@@ -1,5 +1,5 @@
 <?php
-$con= mysqli_connect("localhost","jjallen","password","cihsp");
+$con= mysqli_connect("classroom.cs.unc.edu","jamesml","password","jamesmldb");
 // Check connection
 if (mysqli_connect_errno())
   {

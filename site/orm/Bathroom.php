@@ -7,8 +7,10 @@ class Bathroom
 	private $floor;
 	private $roomNumber;
 	private $description;
+	private $gender;
+	
 	public static function create($building, $floor, $roomNumber, $description){
-		$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 		$result = $mysqli->query("insert into Bathroom (bid,building,floor,roomNumber,description)
 											values (0, . $building . ', ' . $floor . ',' . $roomNumber . ', ' . $description . ')''");
 
@@ -20,7 +22,7 @@ class Bathroom
 	}
 
 	public static function findByID($bid) {
-	$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 		$result = $mysqli->query("select * from Bathroom where bid = " . $bid);
 		if ($result) {
 			if ($result->num_rows == 0){
@@ -37,9 +39,9 @@ class Bathroom
 	}
 
   	public static function getAllIDs() {
-    	$mysqli = new mysqli("classroom.cs.unc.edu", "kmp", "comp426", "kmpdb");
+    	$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 
-    	$result = $mysqli->query("select id from Todo");
+    	$result = $mysqli->query("select id from Bathrooms");
     	$id_array = array();
 
     	if ($result) {
@@ -78,6 +80,10 @@ class Bathroom
 		return $this->description;
 	}
 
+	public function getGender() {
+		return $this->gender;
+	}
+
 	public function getJSON() {
 		$json_rep = array();
 		$json_rep['bid'] = $this->bid;
@@ -88,5 +94,3 @@ class Bathroom
 		return $json_rep;
 	}
 }
-
-?> 
