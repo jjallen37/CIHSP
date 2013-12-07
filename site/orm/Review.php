@@ -8,7 +8,7 @@ class Review
 	private $reviewText;
 	private $overall;
 	public static function create($bid, $name, $subject, $reviewText,$overall) {
-		$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 		$result = $mysqli->query("insert into Review (rid,bid,name,subject,reviewText,overall)
 		 									values (0, . $bid . ', ' . $name . ', ' . $subject . ', ' . $reviewText . ', ' . ', ' . $overall . ')'");
 
@@ -20,7 +20,7 @@ class Review
 	}
 
 	public static function findByID($rid) {
-		$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 		$result = $mysqli->query("select * from Review where rid = " . $rid);
 		if ($result) {
 			if ($result->num_rows == 0){

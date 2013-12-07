@@ -35,7 +35,7 @@ echo "<br>";
 
 // Create tables
 $sql="CREATE TABLE Bathroom(bid INT PRIMARY KEY, 
-	building VARCHAR(25), floor INT, roomNumber VARCHAR(25), description VARCHAR(255))";
+	building VARCHAR(25), floor INT, roomNumber VARCHAR(25), description VARCHAR(255), gender VARCHAR(7))";
 
 // Execute query
 if (mysqli_query($con,$sql))
@@ -50,7 +50,7 @@ else
 echo "<br>";
 
 $sql="CREATE TABLE Review(rid INT PRIMARY KEY, bid INT,name VARCHAR(50),subject VARCHAR(25),
-	reviewText VARCHAR(255), time DATETIME DEFAULT CURRENT_TIMESTAMP,overall INT,
+	reviewText VARCHAR(255), time DATETIME CURRENT_TIMESTAMP,overall INT,
 	 FOREIGN KEY (bid) REFERENCES Bathroom(bid))";
 
 // Execute query

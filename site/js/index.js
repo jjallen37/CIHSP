@@ -1,10 +1,10 @@
-var base_url = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/";
+var base_url = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site";
 var clear = true;
 
 var bathrooms = new Array();
 
 $(document).ready(function() {
-$.ajax(base_url + "/bathrooms.php",
+	$.ajax(base_url + "/php/bathrooms.php",
 	       {type: "GET",
 		       dataType: "json",
 		       success: function(bath_ids, status, jqXHR) {
@@ -12,11 +12,14 @@ $.ajax(base_url + "/bathrooms.php",
 			   addBathroom(bath_ids[i]);
 		       }
 		   }
-	       });});
+	       });
+	console.log("Array loaded: ");
+	console.log(bathrooms)
+});
 
 $(document).on("click", "#submit", function(){
-	var building = $("#b-building").val();
-	var floor = $("#b-floor").val();
+	var building = $("#building").val();
+	var floor = $("#floor").val();
 
 });
 
@@ -39,7 +42,7 @@ var addBathroom = function(id){
 		type: "GET",
 		dataType: "json",
 		success: function(bathroom_json, status, jqXHR) {
-			bathrooms.add(bathroom_json);
+			bathrooms.push(bathroom_json);
 		}
 
 	});
