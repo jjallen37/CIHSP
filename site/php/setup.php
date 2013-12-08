@@ -49,8 +49,7 @@ else
 
 echo "<br>";
 
-$sql="CREATE TABLE Review(rid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, bid INT,name VARCHAR(50),subject VARCHAR(25),
-	reviewText VARCHAR(255), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,overall INT,
+$sql="CREATE TABLE Review(rid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, bid INT,name VARCHAR(50),subject VARCHAR(25), reviewText VARCHAR(255), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,overall INT,
 	 FOREIGN KEY (bid) REFERENCES Bathroom(bid))";
 
 // Execute cubrid_query(query)y

@@ -9,21 +9,21 @@ class Bathroom
 	private $description;
 	private $gender;
 	
-	public static function create($building, $floor, $roomNumber, $description){
+	public static function create($building, $floor, $roomNumber, $description, $gender){
 		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
-		$result = $mysqli->query("insert into Bathroom (bid,building,floor,roomNumber,description)
-											values (0, . $building . ', ' . $floor . ',' . $roomNumber . ', ' . $description . ')''");
+		$result = $mysqli->query("insert into Bathroom (bid,building,floor,roomNumber,description,gender)
+											values (0, . $building . ', ' . $floor . ',' . $roomNumber . ', ' . $description . ', ' .$gender . ')'");
 
 		if($result) {
 			$new_id = $mysqli->insert_id;
-			return new Bathroom($new_id, $building, $floor, $roomNumber, $description);
+			return new Bathroom($new_id, $building, $floor, $roomNumber, $description, $gender);
 		}
 		return null;
 	}
 
 	public static function findByID($bid) {
 		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
-		$result = $mysqli->query("select * from Bathroom where bid = " . $bid);
+		$result = $mysqli->query("SELECT * FROM Bathroom WHERE bid = " . $bid);
 		if ($result) {
 			if ($result->num_rows == 0){
 				return null;
@@ -41,7 +41,7 @@ class Bathroom
   	public static function getAllIDs() {
     	$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
 
-    	$result = $mysqli->query("select id from Bathrooms");
+    	$result = $mysqli->query("SELECT id FROM Bathrooms");
     	$id_array = array();
 
     	if ($result) {
@@ -52,12 +52,13 @@ class Bathroom
     	return $id_array;
   	}
 
-	private function __construct($bid, $building, $floor, $roomNumber, $description){
+	private function __construct($bid, $building, $floor, $roomNumber, $description, $gender){
 		$this->bid = $bid;
 		$this->building = $building;
 		$this->floor = $floor;
 		$this->roomNumber = $roomNumber;
 		$this->description = $description;
+		$this->gender = $gender;
 	}
 
 	public function getBathroomID() {
@@ -91,6 +92,7 @@ class Bathroom
 		$json_rep['floor'] = $this->floor;
 		$json_rep['roomNumber'] = $this->roomNumber;
 		$json_rep['description'] = $this->description;
+		$json_rep['gender'] = $this->gender;
 		return $json_rep;
 	}
 }

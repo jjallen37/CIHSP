@@ -92,5 +92,4 @@ class Review
 	  $json_rep['reviewText'] = $this->reviewText;
 	  $json_rep['overall'] = $this->overall;
 	  return $json_rep;
-	}
-}
+	}}
