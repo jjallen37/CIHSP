@@ -1,95 +1,171 @@
 <?php
+
+ini_set('display_errors', 'On');
 require_once('orm/Review.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  // if (is_null($_SERVER['PATH_INFO'])) {
-  //   $range_start = -1;
-  //   $range_end = -10;
+$path_components = explode('/', $_SERVER['PATH_INFO']);
 
-  //   // if (!is_null($_GET['range_start'])) {
-  //     $range_start = intval($_GET['range_start']);
-  //   } 
-  //   if (!is_null($_GET['range_end'])) {
-  //     $range_end = intval($_GET['range_end']);
-  //   }
-    
-  //   $transactions = Review::getRange($range_start, $range_end);
+// Note that since extra path info starts with '/'
+// First element of path_components is always defined and always empty.
 
-  //   if (is_null($transactions)) {
-  //     // Something went wrong. Return error.
-  //     header("HTTP/1.1 400 Bad Request");
-  //     print("Error in range specification");
-  //     exit();
-  //   }
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+  // GET means either instance look up, index generation, or deletion
 
-  //   $transaction_ids = array();
-  //   foreach ($transactions as $t) {
-  //     $transaction_ids[] = $t->getID();
-  //   }
-  //   header("Content-type: application/json");
-  //   print(json_encode($transaction_ids));
-  //   exit();
-  // } else {
-  //   $transaction_id = intval(substr($_SERVER['PATH_INFO'], 1));
-  //   $Review = Review::findByID($transaction_id);
-    
-  //   if (is_null($Review)) {
-  //     header("HTTP/1.1 404 Not Found");
-  //     print("Review id specified either not found or not legal");
-  //     exit();
-  //   }
-  //   if (is_null($_GET['delete'])) {
-  //     header("Content-type: application/json");
-  //     print(json_encode($Review->getJSON()));
-  //     exit();
-  //   } else {
-  //     $Review->delete();
-  //     header("Content-type: application/json");
-  //     print(json_encode(true));
-  //     exit();
-  //   }
-  // }
-} else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  //
-  // if (is_null($_SERVER['PATH_INFO'])) {
-    //Review is being added
-    //POST review.php 
-    //
-    // $price = floatval($_POST['price']);
-    // if ($price <= 0) {
-    //   header("HTTP/1.1 400 Bad Request");
-    //   print("Price is illegal");
+  // Following matches instance URL in form
+  // /review.php/<id>
+
+      // header("HTTP/1.0 404 Not Found");
+      // print("Review GET not implmentented.");
+      // exit();
+
+  if ((count($path_components) >= 2) && ($path_components[1] != "")) {
+    // // Interpret <id> as integer
+    // $rid = intval($path_components[1]);
+
+    // // Look up object via ORM
+    // $review = Review::findByID($rid);
+
+    // if ($review == null) {
+        // Review not found.
+      // header("HTTP/1.0 404 Not Found");
+      // print("Review id: " . $rid . " not found.");
+      // exit();
+    // }
+
+    // // Check to see if deleting
+    // if (isset($_REQUEST['delete'])) {
+    //   $review->delete();
+    //   header("Content-type: application/json");
+    //   print(json_encode(true));
+    //   exit();
+    // } 
+
+    // // Normal lookup.
+    // // Generate JSON encoding as response
+    // header("Content-type: application/json");
+    // print($review->getJSON());
+    // exit();
+  }
+
+  // // ID not specified, then must be asking for index
+  // header("Content-type: application/json");
+  // print(json_encode(Review::getAllIDs()));
+  // exit();
+} else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+  // Following matches /review.php/<id> form
+  if ((count($path_components) >= 2) && ($path_components[1] != "")) {
+    // //Interpret <id> as integer and look up via ORM
+    // $rid = intval($path_components[1]);
+    // $review = Review::findByID($rid);
+
+    // if ($review == null) {
+    //     // Review not found.
+    //   header("HTTP/1.0 404 Not Found");
+    //   print("Review id: " . $rid . " not found while attempting update.");
     //   exit();
     // }
-    // XXX - Still need to validate with regard to player's availability and owner's budget.
 
-    $Review = Review::create(1,'James A','Toilet too high', 'Stall is very raised', 3);
-    if (is_null($Review)) {
-      header("HTTP/1.1 400 Bad Request");
-      print("Review failed at database");
+    // // Validate values
+    // $new_first = false;
+    // if (isset($_REQUEST['name'])) {
+    //   $new_first = trim($_REQUEST['name']);
+    //   if ($new_first == "") {
+    //     header("HTTP/1.0 400 Bad Request");
+    //     print("Bad name");
+    //     exit();
+    //   }
+    // }
+
+    // $new_last = false;
+    // if (isset($_REQUEST['subject'])) {
+    //   $new_last = trim($_REQUEST['subject']);
+    //   if ($new_last == "") {
+    //     header("HTTP/1.0 400 Bad Request");
+    //     print("Bad subject");
+    //     exit();
+    //   }
+    // }
+
+    // // Update via ORM
+    // if ($new_first != false) {
+    //   $review->setFirst($new_first);
+    // }
+
+    // if ($new_last != false) {
+    //   $review->setLast($new_last);
+    // }
+
+    // // Return JSON encoding of updated Review
+    // header("Content-type: application/json");
+    // print($review->getJSON());
+    // exit();
+
+    // Return JSON encoding of updated Review
+    header("HTTP/1.0 400 Bad Request");
+    print("Post Reviews:<id> not set for anything yet");
+    exit();
+  } else { // Creating a new Review item
+
+    // Validate values
+    if (!isset($_REQUEST['name'])) {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing name");
       exit();
     }
 
-    header("Content-type: application/json");
-    print(json_encode($Review->getJSON()));
-    exit();
-  // } else {//review.php/<bid>
-  //   // print(intval(substr($_SERVER['PATH_INFO'], 1)));
-  //   $transaction_id = intval(substr($_SERVER['PATH_INFO'], 1));
-  //   $Review = Review::findByID($transaction_id);
-  //   if ($Review == null) {
-  //     header("HTTP/1.1 404 Not Found");
-  //     print("Review id specified either not found or not legal");
-  //     exit();
-  //   }
+    $name = trim($_REQUEST['name']);
+    if ($name == "") {
+      header("HTTP/1.0 400 Bad Request");
+      print("Bad name");
+      exit();
+    }
 
-  //   $Review->setPrice($price);
-  //   header("Content-type: application/json");
-  //   print(json_encode($Review->getJSON()));
-  //   exit();
-  // }
+    if (!isset($_REQUEST['subject'])) {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing subject name");
+      exit();
+    }
+
+    $subject = trim($_REQUEST['subject']);
+    if ($subject == "") {
+      header("HTTP/1.0 400 Bad Request");
+      print("Bad subject name");
+      exit();
+    }
+
+    $reviewText = 'text';
+    if (!isset($_REQUEST['reviewText'])) {
+      $reviewText = trim($_REQUEST['reviewText']);
+      if ($reviewText == "") {
+        header("HTTP/1.0 400 Bad Request");
+        print("Bad reviewText");
+        exit();
+      }
+    }
+
+
+    // Create new Review via ORM
+    $new_review = Review::create(1, $name, $subject,$reviewText,5);
+
+    // Report if failed
+    if ($new_review == null) {
+      header("HTTP/1.0 500 Server Error");
+      print("Server couldn't create new review.");
+      exit();
+    }
+
+      //Generate JSON encoding of new Review
+    header("Content-type: application/json");
+    print($new_review->getJSON());
+    exit();
+  }
 }
-  
-header("HTTP/1.1 400 Bad Request");
-print("URL did not match any known action.");
+
+// If here, none of the above applied and URL could
+// not be interpreted with respect to RESTful conventions.
+
+header("HTTP/1.0 400 Bad Request");
+print("Did not understand URL");
+
 ?>

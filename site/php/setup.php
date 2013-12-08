@@ -1,5 +1,5 @@
 <?php
-$con= mysqli_connect("classroom.cs.unc.edu","jamesml","password","jamesmldb");
+$con= new mysqli("classroom.cs.unc.edu","jjallen","classroomjja","jjallendb");
 // Check connection
 if (mysqli_connect_errno())
   {
@@ -34,7 +34,7 @@ echo "<br>";
 
 
 // Create tables
-$sql="CREATE TABLE Bathroom(bid INT PRIMARY KEY, 
+$sql="CREATE TABLE Bathroom(bid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 	building VARCHAR(25), floor INT, roomNumber VARCHAR(25), description VARCHAR(255))";
 
 // Execute query
@@ -49,11 +49,11 @@ else
 
 echo "<br>";
 
-$sql="CREATE TABLE Review(rid INT PRIMARY KEY, bid INT,name VARCHAR(50),subject VARCHAR(25),
-	reviewText VARCHAR(255), time DATETIME DEFAULT CURRENT_TIMESTAMP,overall INT,
+$sql="CREATE TABLE Review(rid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, bid INT,name VARCHAR(50),subject VARCHAR(25),
+	reviewText VARCHAR(255), time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,overall INT,
 	 FOREIGN KEY (bid) REFERENCES Bathroom(bid))";
 
-// Execute query
+// Execute cubrid_query(query)y
 if (mysqli_query($con,$sql))
   {
   echo "Table Review created successfully";

@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 'On');
 
 class Review
 {
@@ -7,20 +8,28 @@ class Review
 	private $subject;
 	private $reviewText;
 	private $overall;
+
 	public static function create($bid, $name, $subject, $reviewText,$overall) {
-		$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
-		$result = $mysqli->query("insert into Review (rid,bid,name,subject,reviewText,overall)
-		 									values (0, . $bid . ', ' . $name . ', ' . $subject . ', ' . $reviewText . ', ' . ', ' . $overall . ')'");
+	    $mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
+	    $query = ("insert into Review (bid, name, subject, reviewText, overall) values (" .
+	      $bid . ", " .
+	      "'" . $mysqli->real_escape_string($name) . "', " .
+	      "'" . $mysqli->real_escape_string($subject) . "', " .
+	      "'" . $mysqli->real_escape_string($reviewText) . "', ". 
+	      $overall . ")");
+		print("SQL:" . $query);
+		$result = $mysqli->query($query);
 
 		if ($result) {
 			$new_id = $mysqli->insert_id;
+			print("result exists");
 			return new Review($new_id, $bid, $name, $subject, $reviewText, $overall);
 		}
 		return null;
 	}
 
 	public static function findByID($rid) {
-		$mysqli = new mysqli("localhost", "jjallen", "password", "cihsp");
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
 		$result = $mysqli->query("select * from Review where rid = " . $rid);
 		if ($result) {
 			if ($result->num_rows == 0){
@@ -50,7 +59,7 @@ class Review
 		return $this->rid;
 	}
 	public function getBathroomID() {
-		return $this->rid;
+		return $this->bid;
 	}
 	public function getName() {
 		return $this->name;

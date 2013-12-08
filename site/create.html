@@ -8,11 +8,9 @@
             Add A Review
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-        <script src="js/jquery-1.10.2.min.js" type="text/javascript">
-</script>
+        <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="js/create.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container-narrow">
@@ -25,20 +23,20 @@
                 </h3>
             </div>
             <hr>
-            <form class="form-horizontal" role="form">
+            <form action="reviews.php" method="POST" id="new_review_form" name="new_review_form" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" placeholder="Anonymous">
+                        <input name="name" type="text" class="form-control" id="inputName" placeholder="Anonymous">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputSubject" class="col-sm-2 control-label">Subject</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputSubject" placeholder="Review Subject">
+                        <input name="subject" type="text" class="form-control" id="inputSubject" placeholder="Review Subject">
                     </div>
                 </div>
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label for="inputOverall" class="col-sm-2 control-label">Overall</label>
                     <div class="col-sm-10">
                         <div class="btn-group" id="inputOverall">
@@ -60,84 +58,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputClean" class="col-sm-2 control-label">Cleanliness</label>
-                    <div class="col-sm-10">
-                        <div class="btn-group" id="inputClean">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputConvenience" class="col-sm-2 control-label">Convenience</label>
-                    <div class="col-sm-10">
-                        <div class="btn-group" id="inputConvenience">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputCongestion" class="col-sm-2 control-label">Congestion</label>
-                    <div class="col-sm-10">
-                        <div class="btn-group" id="inputCongestion">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                        </div>
-                    </div>
-                </div>
+ -->                
                 <div class="form-group">
                     <label for="inputReview" class="col-sm-2 control-label">Review</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" id="inputReview" placeholder="Review Text"></textarea>
+                        <textarea name="reviewText" class="form-control" rows="5" id="inputReview" placeholder="Review Text"></textarea>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-default">Submit Review</button>
                     </div>
                 </div>
             </form>
+
             <hr>
             <div class="footer">
                 Building, floor, or bathroom missing? Email us at: CIHSP@gmail.com.
