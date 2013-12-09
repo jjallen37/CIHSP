@@ -2,7 +2,7 @@ var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/php";
 
 $(document).ready(function () {
 	var TEMP_BID = 1; //Hardcoded bathroom in the db
-	
+
 	// Load review list and display it
 	$.ajax(url_base + "/bathrooms.php/"+TEMP_BID+"/reviews/",
 		{type: "GET",
@@ -21,12 +21,15 @@ $(document).ready(function () {
 
 //Append Specific Review to list
 var load_review_item = function (id) {
-	$.ajax(url_base + "/review.php/" + id,
+	$.ajax(url_base + "/reviews.php/" + id,
 		{type: "GET",
 		dataType: "json",
-		success: function(contact_json, status, jqXHR) {
-			var t = new Review(contact_json);
+		success: function(review_json, status, jqXHR) {
+			console.log(review_json.subject);
+			var t = new Review(review_json);
 			$('#review_list').append(t.makeCompactDiv());
-		}
-	});
+		},
+		error: function(jqXHR, status, error) {
+			alert("faliure:"+jqXHR.responseText);
+		}});
 };

@@ -80,6 +80,6 @@ class Bathroom
 		$json_rep['roomNumber'] = $this->roomNumber;
 		$json_rep['description'] = $this->description;
 		$json_rep['gender'] = $this->gender;
-		return $json_rep;
+		return json_encode($json_rep);
 	}
 }

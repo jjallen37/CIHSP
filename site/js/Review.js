@@ -1,5 +1,4 @@
 var Review = function(review_json) {
-	console.log("JS Review :"+review_json);
     this.id = review_json.idl;
     this.bid = review_json.bid;
     this.name = review_json.name;
@@ -13,12 +12,12 @@ Review.prototype.makeCompactDiv = function() {
     reviewDiv.addClass('review');
 
     var leftDiv = $("<div></div>");
-    leftDiv.addClass('col-md-6');
-    leftDiv.html("<h4>" + this.name + "<br> <small>"+this.overall+"</small></h4>");
+    leftDiv.addClass('span6');
+    leftDiv.html(this.subject+"-- <b>" + this.name + "<br><small>"+this.overall+"</small></b>");
     reviewDiv.append(leftDiv);
 
     var rightDiv = $("<div></div>");
-    rightDiv.addClass('col-md-6');
+    rightDiv.addClass('span6');
     rightDiv.html("<b>"+this.reviewText+"</b>");
     reviewDiv.append(rightDiv);
 

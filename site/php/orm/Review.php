@@ -29,17 +29,19 @@ class Review
 	public static function findByID($rid) {
 		$mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
 		$result = $mysqli->query("select * from Review where rid = " . $rid);
+
 		if ($result) {
 			if ($result->num_rows == 0){
 				return null;
 			}
 			$review_info = $result->fetch_array();
-			return new Review(intval($review_info['rid']),
+			$review = new Review(intval($review_info['rid']),
 					       intval($review_info['bid']),
-					       intval($review_info['overall']),
 					       $review_info['name'],
 					       $review_info['subject'],
-					       $review_info['reviewText']);
+					       $review_info['reviewText'],
+					       intval($review_info['overall']));
+			return $review;
 		}
 		return null;
 	}
@@ -105,5 +107,5 @@ class Review
 	  $json_rep['subject'] = $this->subject;
 	  $json_rep['reviewText'] = $this->reviewText;
 	  $json_rep['overall'] = $this->overall;
-	  return $json_rep;
+	  return json_encode($json_rep);
 	}}
