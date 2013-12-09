@@ -20,10 +20,18 @@ $(document).ready(function() {
 $(document).on("click", "#submit", function(){
 	var building = $("#building").val();
 	var floor = $("#floor").val();
+	var gender = $("#gender").val();
+});
+
+$(document).on("change", "#building", function(){
 
 });
 
-$(document).on("change", "#b-building", function(){
+$(document).on("change", "#floor", function(){
+
+});
+
+$(document).on("change", "#gender", function(){
 
 });
 

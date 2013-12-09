@@ -17,7 +17,7 @@ Bathroom.prototype.makeCompactDiv = function() {
     building_div.html(this.building + " " + this.floor + " " + this.roomNumber);
     cdiv.append(name_div);
 
-    cdiv.data('contact', this);
+    cdiv.data('building_div', this);
 
     return cdiv;
 };
