@@ -4,7 +4,8 @@ var clear = true;
 var bathrooms = new Array();
 
 $(document).ready(function() {
-	$.ajax(base_url + "/php/bathrooms.php",
+
+	$.ajax(base_url + "/php/bathrooms.php/",
 	       {type: "GET",
 		       dataType: "json",
 		       success: function(bath_ids, status, jqXHR) {
@@ -48,7 +49,7 @@ console.log("in addBathroom: " + bid)
 //     }
 // });
 
-	$.ajax(base_url + "/php/bathrooms.php" + bid,{
+	$.ajax(base_url + "/php/bathrooms.php/" + bid,{
 		type: "GET",
 		dataType: "json",
 		success: function(bathroom_json, status, jqXHR) {
