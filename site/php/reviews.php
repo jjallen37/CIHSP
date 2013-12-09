@@ -14,43 +14,39 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
   // Following matches instance URL in form
   // /review.php/<id>
 
-      // header("HTTP/1.0 404 Not Found");
-      // print("Review GET not implmentented.");
-      // exit();
-
   if ((count($path_components) >= 2) && ($path_components[1] != "")) {
-    // // Interpret <id> as integer
-    // $rid = intval($path_components[1]);
+    // Interpret <id> as integer
+    $rid = intval($path_components[1]);
 
-    // // Look up object via ORM
-    // $review = Review::findByID($rid);
+    // Look up object via ORM
+    $review = Review::findByID($rid);
 
-    // if ($review == null) {
-        // Review not found.
-      // header("HTTP/1.0 404 Not Found");
-      // print("Review id: " . $rid . " not found.");
-      // exit();
-    // }
+    if ($review == null) {
+      //  Review not found.
+      header("HTTP/1.0 404 Not Found");
+      print("Review id: " . $rid . " not found.");
+      exit();
+    }
 
-    // // Check to see if deleting
-    // if (isset($_REQUEST['delete'])) {
-    //   $review->delete();
-    //   header("Content-type: application/json");
-    //   print(json_encode(true));
-    //   exit();
-    // } 
+    // Check to see if deleting
+    if (isset($_REQUEST['delete'])) {
+      $review->delete();
+      header("Content-type: application/json");
+      print(json_encode(true));
+      exit();
+    } 
 
-    // // Normal lookup.
-    // // Generate JSON encoding as response
-    // header("Content-type: application/json");
-    // print($review->getJSON());
-    // exit();
+    // Normal lookup.
+    // Generate JSON encoding as response
+    header("Content-type: application/json");
+    print($review->getJSON());
+    exit();
   }
 
-  // // ID not specified, then must be asking for index
-  // header("Content-type: application/json");
-  // print(json_encode(Review::getAllIDs()));
-  // exit();
+  // ID not specified, then must be asking for index
+  header("Content-type: application/json");
+  print(json_encode(Review::getAllIDs()));
+  exit();
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   // Following matches /review.php/<id> form
@@ -155,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       exit();
     }
 
-      //Generate JSON encoding of new Review
+    //Generate JSON encoding of new Review
     header("Content-type: application/json");
     print($new_review->getJSON());
     exit();

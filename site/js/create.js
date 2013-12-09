@@ -6,7 +6,7 @@ $(document).ready(function () {
 		function (e) {
 			e.preventDefault();
 			alert($(this).serialize());
-			$.ajax(url_base + "/reviews.php",
+			$.ajax(url_base + "/reviews.php/",
 				{type: "POST",
 				dataType: "json",
 				data: $(this).serialize(),

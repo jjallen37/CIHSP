@@ -10,7 +10,7 @@ class Bathroom
 	private $gender;
 	
 	public static function create($building, $floor, $roomNumber, $description, $gender){
-		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
+	    $mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
 		$result = $mysqli->query("insert into Bathroom (bid,building,floor,roomNumber,description,gender)
 											values (0, . $building . ', ' . $floor . ',' . $roomNumber . ', ' . $description . ', ' .$gender . ')'");
 
@@ -22,7 +22,7 @@ class Bathroom
 	}
 
 	public static function findByID($bid) {
-		$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
+	    $mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
 		$result = $mysqli->query("SELECT * FROM Bathroom WHERE bid = " . $bid);
 		if ($result) {
 			if ($result->num_rows == 0){
@@ -30,27 +30,14 @@ class Bathroom
 			}
 			$review_info = $result->fetch_array();
 			return new Bathroom(intval($review_info['bid']),
-					       $review_info['building']),
+					       $review_info['building'],
 					       intval($review_info['floor']),
 					       $review_info['roomNumber'],
-					       $review_info['description']);		
+					       $review_info['description'],
+					       $review_info['gender']);		
 		}
 		return null;
 	}
-
-  	public static function getAllIDs() {
-    	$mysqli = new mysqli("classroom.cs.unc.edu", "jamesml", "password", "jamesmldb");
-
-    	$result = $mysqli->query("SELECT id FROM Bathrooms");
-    	$id_array = array();
-
-    	if ($result) {
-     	 while ($next_row = $result->fetch_array()) {
-			$id_array[] = intval($next_row['id']);
-    		}
-    	}
-    	return $id_array;
-  	}
 
 	private function __construct($bid, $building, $floor, $roomNumber, $description, $gender){
 		$this->bid = $bid;

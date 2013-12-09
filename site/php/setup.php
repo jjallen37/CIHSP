@@ -35,7 +35,7 @@ echo "<br>";
 
 // Create tables
 $sql="CREATE TABLE Bathroom(bid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-	building VARCHAR(25), floor INT, roomNumber VARCHAR(25), description VARCHAR(255))";
+	building VARCHAR(25), floor INT, roomNumber VARCHAR(25), description VARCHAR(255), gender VARCHAR(25))";
 
 // Execute query
 if (mysqli_query($con,$sql))
@@ -65,8 +65,8 @@ else
 echo "<br>";
 
 // Insert bathroom data
-$sql="INSERT INTO Bathroom (bid, building, floor, roomNumber, description) VALUES 
-(1,'Sitterson',0,'SN008','Across From the vending machines')";
+$sql="INSERT INTO Bathroom (bid, building, floor, roomNumber, description, gender) VALUES 
+(1,'Sitterson',0,'SN008','Across From the vending machines','M')";
 
 // Execute query
 if (mysqli_query($con,$sql))

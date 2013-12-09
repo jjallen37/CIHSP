@@ -17,12 +17,10 @@ class Review
 	      "'" . $mysqli->real_escape_string($subject) . "', " .
 	      "'" . $mysqli->real_escape_string($reviewText) . "', ". 
 	      $overall . ")");
-		print("SQL:" . $query);
 		$result = $mysqli->query($query);
 
 		if ($result) {
 			$new_id = $mysqli->insert_id;
-			print("result exists");
 			return new Review($new_id, $bid, $name, $subject, $reviewText, $overall);
 		}
 		return null;
@@ -46,6 +44,22 @@ class Review
 		return null;
 	}
 
+	public static function reviewsByBID($bid) {
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
+		$result = $mysqli->query("select * from Review where bid = " . $bid);
+		if ($result) {
+			if ($result->num_rows == 0){
+				return null;
+			}
+			$id_array = array();
+			while ($next_row = $result->fetch_array()) {
+				$id_array[] = $next_row['rid'];
+			}
+			return $id_array;
+		}
+		return null;
+	}
+
 	private function __construct($rid, $bid, $name, $subject, $reviewText, $overall) {
 		$this->rid = $rid;
 		$this->bid = $bid;
@@ -58,7 +72,7 @@ class Review
 	public function getID() {
 		return $this->rid;
 	}
-	public function getBathroomID() {
+	public function getBid() {
 		return $this->bid;
 	}
 	public function getName() {

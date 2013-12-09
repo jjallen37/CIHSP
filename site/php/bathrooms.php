@@ -1,6 +1,8 @@
 <?php
 
+ini_set('display_errors', 'On');
 require_once('orm/Bathroom.php');
+require_once('orm/Review.php');
 
 $path_components = explode('/', $_SERVER['PATH_INFO']);
 
@@ -9,34 +11,40 @@ $path_components = explode('/', $_SERVER['PATH_INFO']);
 // Note that we only retreive bathrooms, never update or add new ones.
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-
     if ((count($path_components) >= 2) &&
       ($path_components[1] != "")) {
-
     // Interpret <id> as integer
     $bath_id = intval($path_components[1]);
+
+    // /bathrooms.php/<bid>/reviews
+    if (count($path_components)==4) {
+      header("Content-type: application/json");
+      print(json_encode(Review::reviewsByBID($bath_id)));
+      exit();
+    }
 
     // Look up object via ORM
     $bathroom = Bathroom::findByID($bath_id);
 
-    if ($todo == null) {
-      // Todo not found.
+    if ($bathroom == null) {
+      // Bathroom not found.
       header("HTTP/1.0 404 Not Found");
-      print("Todo id: " . $bath_id . " not found.");
+      print("Bathroom id: " . $bath_id . " not found.");
       exit();
     }
+
     // Normal lookup.
     // Generate JSON encoding as response
     header("Content-type: application/json");
-    print($todo->getJSON());
+    print($bathroom->getJSON());
     exit();
-
   }
-  // ID not specified, then must be asking for index
-  header("Content-type: application/json");
-  print(json_encode(Todo::getAllIDs()));
+
+  // Normal lookup.
+  // Generate JSON encoding as response
+  header("HTTP/1.0 500 Invalid Request");
+  print("Bathroom id: " . $bath_id . " not found.");
   exit();
-  // GET means either instance look up, index generation, or deletion
 
 }
 
@@ -45,5 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 header("HTTP/1.0 400 Bad Request");
 print("Did not understand URL");
+exit();
 
 ?>
