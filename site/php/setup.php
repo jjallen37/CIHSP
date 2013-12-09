@@ -77,5 +77,18 @@ else
   {
   echo "Error entering bathroom data: " . mysqli_error($con);
   }
+
+$sql="INSERT INTO Bathroom (bid, building, floor, roomNumber, description, gender) VALUES 
+(2,'Davis',1,'Back','In the back of the first floor','M')";
+
+// Execute query
+if (mysqli_query($con,$sql))
+  {
+  echo "Bathroom entered successfully";
+  }
+else
+  {
+  echo "Error entering bathroom data: " . mysqli_error($con);
+  }
 ?>
 

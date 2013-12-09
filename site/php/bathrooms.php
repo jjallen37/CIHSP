@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       ($path_components[1] != "")) {
     // Interpret <id> as integer
     $bath_id = intval($path_components[1]);
+    //echo "Bathroom id: $bath_id ";
 
     // /bathrooms.php/<bid>/reviews
     if (count($path_components)==4) {
@@ -38,18 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     header("Content-type: application/json");
     print($bathroom->getJSON());
     exit();
+
   }
-
-  // Normal lookup.
-  // Generate JSON encoding as response
-  header("HTTP/1.0 500 Invalid Request");
-  print("Bathroom id: " . $bath_id . " not found.");
-  exit();
-
+    
+    //ID Not specified, want all IDs
+    //echo "Got to here";
+    header("Content-type: application/json");
+    print(json_encode(Bathroom::getAllIDs()));
+    exit();
 }
 
 // If here, none of the above applied and URL could
 // not be interpreted with respect to RESTful conventions.
+// Request other than GET
 
 header("HTTP/1.0 400 Bad Request");
 print("Did not understand URL");

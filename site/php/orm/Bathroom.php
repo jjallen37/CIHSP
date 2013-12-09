@@ -39,6 +39,20 @@ class Bathroom
 		return null;
 	}
 
+	public static function getAllIDs(){
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
+
+		$result = $mysqli->query("SELECT bid FROM Bathroom");
+		$id_array = array();
+
+		if($result){
+			while($next_row = $result->fetch_array()) {
+				$id_array[] = intval($next_row['bid']);
+			}
+		}
+		return $id_array;
+	}
+
 	private function __construct($bid, $building, $floor, $roomNumber, $description, $gender){
 		$this->bid = $bid;
 		$this->building = $building;

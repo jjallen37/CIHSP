@@ -8,13 +8,14 @@ $(document).ready(function() {
 	       {type: "GET",
 		       dataType: "json",
 		       success: function(bath_ids, status, jqXHR) {
+		       console.log(bath_ids.length)
 		       for (var i=0; i<bath_ids.length; i++) {
-			   addBathroom(bath_ids[i]);
+			   		addBathroom(bath_ids[i]);
 		       }
 		   }
 	       });
-	console.log("Array loaded: ");
-	console.log(bathrooms)
+	//console.log("Array loaded: ");
+	//console.log(bathrooms)
 });
 
 $(document).on("click", "#submit", function(){
@@ -35,8 +36,9 @@ $(document).on("change", "#gender", function(){
 
 });
 
-var addBathroom = function(id){
+var addBathroom = function(bid){
 
+console.log("in addBathroom: " + bid)
 // $.ajax(url_base + "/todo.php/" + id,
 // {type: "GET",
 //  dataType: "json",
@@ -46,10 +48,11 @@ var addBathroom = function(id){
 //     }
 // });
 
-	$.ajax(base_url + "/php/bathrooms.php" + id,{
+	$.ajax(base_url + "/php/bathrooms.php" + bid,{
 		type: "GET",
 		dataType: "json",
 		success: function(bathroom_json, status, jqXHR) {
+			var b = new Bathroom(bathroom_json);
 			bathrooms.push(bathroom_json);
 		}
 

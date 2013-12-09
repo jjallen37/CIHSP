@@ -1,6 +1,6 @@
 
 var Bathroom = function(contact_json) {
-    this.id = contact_json.id;
+    this.bid = contact_json.id;
     this.building = contact_json.building;
     this.floor = contact_json.floor;
     this.roomNumber = contact_json.roomNumber;
