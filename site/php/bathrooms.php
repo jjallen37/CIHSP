@@ -1,10 +1,12 @@
 <?php
 
-ini_set('display_errors', 'On');
+//ini_set('display_errors', 'On');
 require_once('orm/Bathroom.php');
 require_once('orm/Review.php');
 
 $path_components = explode('/', $_SERVER['PATH_INFO']);
+
+echo $path_components;
 
 // Note that since extra path info starts with '/'
 // First element of path_components is always defined and always empty.
