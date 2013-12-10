@@ -5,6 +5,10 @@ var bathrooms = new Array();
 
 $(document).ready(function() {
 
+	$("#building").val("None Selected");
+	$("#floor").val("None Selected");
+	$("#gender").val("None Selected");
+
     $.ajax(base_url + "/php/bathrooms.php/", {
         type: "GET",
         dataType: "json",
@@ -15,8 +19,6 @@ $(document).ready(function() {
             }
         }
     });
-    console.log("Array loaded: ");
-    console.log(bathrooms[0]);
 });
 
 $(document).on("click", "#submit", function() {
@@ -24,16 +26,63 @@ $(document).on("click", "#submit", function() {
 });
 
 $(document).on("change", "#building", function() {
+	var gender = $("#gender").val();
     var building = $("#building").val();
-    populateBasedOnBuilding(building);
+    var floor = $("#floor").val();    
+
+    if (building != "None Selected"){
+		populateBasedOnBuilding(building);
+		return;
+	}else if (floor != "None Selected"){
+		populateBasedOnFloor(floor);
+		return;
+	}else if (gender != "None Selected"){
+		populateBasedOnGender(gender);
+		return;
+	}else {
+		$("#bathroom-list").empty();
+	}
 });
 
 $(document).on("change", "#floor", function() {
-	var floor = $("#floor").val();
+	var gender = $("#gender").val();
+    var building = $("#building").val();
+    var floor = $("#floor").val();	
+
+    if (floor != "None Selected"){
+		populateBasedOnFloor(floor);
+		return;
+	}else if (building != "None Selected"){
+		populateBasedOnBuilding(building);
+		return;
+	}else if (gender != "None Selected"){
+		populateBasedOnGender(gender);
+		return;
+	}else {
+		$("#bathroom-list").empty();
+	}
+	
 });
 
 $(document).on("change", "#gender", function() {
+	var gender = $("#gender").val();
+    var building = $("#building").val();
+    var floor = $("#floor").val();
+	
+	//p("Gender called: " + gender);
 
+	if (gender != "None Selected"){
+		populateBasedOnGender(gender);
+		return;
+	}else if (building != "None Selected"){
+		populateBasedOnBuilding(building);
+		return;
+	}else if (floor != "None Selected"){
+		populateBasedOnFloor(floor);
+		return;
+	}else {
+		$("#bathroom-list").empty();
+	}
 });
 
 var addBathroom = function(bid) {
@@ -53,8 +102,8 @@ var addBathroom = function(bid) {
         dataType: "json",
         success: function(bathroom_json, status, jqXHR) {
             var b = new Bathroom(bathroom_json);
-            console.log(b);
-            bathrooms.push(bathroom_json);
+            //console.log(b);
+            bathrooms.push(b);
         }
 
     });
@@ -70,29 +119,155 @@ var populateBasedOnBuilding = function(building) {
     var floor = $("#floor").val();
     var gender = $("#gender").val();
 
+    // p("B: " + building);
+    // p("F: " + floor);
+    // p("G: " + gender);
+
+    // if (building == "None Selected" && floor == "None Selected" && gender == "None Selected"){
+    // 	return;
+    // }
+
     if (floor != "None Selected" && gender != "None Selected") {
         for (var i = 0; i < bathrooms.length; i++) {
-            if (bathrooms[i].building === building && bathrooms[i].floor === floor && bathrooms[i].gender === gender) {
+            if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
                 $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
             }
         }
-    }else if (floor === "None Selected" && gender != "None Selected"){
+    }else if (floor == "None Selected" && gender != "None Selected"){
     	for (var i = 0; i < bathrooms.length; i++) {
-            if (bathrooms[i].building === building && bathrooms[i].gender === gender) {
+            if (bathrooms[i].building == building && bathrooms[i].gender == gender) {
+                
                 $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
             }
         }
-    }else if (floor != "None Selected" && gender === "None Selected"){
+    }else if (floor != "None Selected" && gender == "None Selected"){
     	for (var i = 0; i < bathrooms.length; i++) {
-            if (bathrooms[i].building === building && bathrooms[i].floor === floor) {
+            if (bathrooms[i].building == building && bathrooms[i].floor == floor) {
                 $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
             }
         }
     }else {
     	for (var i = 0; i < bathrooms.length; i++) {
-            if (bathrooms[i].building === building) {
+            if (bathrooms[i].building == building) {
                 $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
             }
         }
     }
+}
+
+var populateBasedOnFloor = function(floor){
+	var hidden = $("#bathroom-list").is(":hidden");
+	if(hidden){
+		$("#bathroom-list").toggleClass("hidden");
+	}
+	$("#bathroom-list").empty();
+
+    var building = $("#building").val();
+    var gender = $("#gender").val();
+
+    // p("B: " + building);
+    // p("F: " + floor);
+    // p("G: " + gender);
+
+    // if (building == "None Selected" && floor == "None Selected" && gender == "None Selected"){
+    // 	return;
+    // }
+
+    if (building != "None Selected" && gender != "None Selected") { 
+    //Have all three
+   	//p("Have all three");
+        for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
+                //p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else if (building == "None Selected" && gender != "None Selected"){ 
+    //Have only floor and gender
+    //p("Have only floor and gedner");
+    	for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
+                //p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else if (building != "None Selected" && gender == "None Selected"){ 
+    //Have only building and floor
+    //p("Have only building + floor");
+    	for (var i = 0; i < bathrooms.length; i++) {
+    		// p(bathrooms[i]);
+    		// p(bathrooms[i].floor);
+    		// p(bathrooms[i].building);
+            if (bathrooms[i].floor == floor && bathrooms[i].building == building) {
+            	//p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else { 
+    //Have only floor
+    //p("Have only floor");
+    	for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].floor == floor) {
+            	//p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }
+}
+
+var populateBasedOnGender = function(gender){
+	var hidden = $("#bathroom-list").is(":hidden");
+	if(hidden){
+		$("#bathroom-list").toggleClass("hidden");
+	}
+	$("#bathroom-list").empty();
+
+    var building = $("#building").val();
+    var floor = $("#floor").val();
+
+    // if (building == "None Selected" && floor == "None Selected" && gender == "None Selected"){
+    // 	return;
+    // }
+
+    if (building != "None Selected" && floor != "None Selected") { 
+    //Have all three
+   	//p("Have all three");
+        for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else if (building == "None Selected" && floor != "None Selected"){ 
+    //Have only gender and floor
+    //p("Have only gender and floor");
+    	for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].gender == gender && bathrooms[i].floor == floor) {
+                //p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else if (building != "None Selected" && floor == "None Selected"){ 
+    //Have only gender and building
+    //p("Have only gender and building");
+    	for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].gender == gender && bathrooms[i].building == building) {
+            	//p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }else { 
+    //Have only gender
+    //p("Have only gender");
+    	for (var i = 0; i < bathrooms.length; i++) {
+            if (bathrooms[i].gender == gender) {
+            	//p("Match found");
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+            }
+        }
+    }
+}
+
+//Simple shorthand for printing to console
+var p = function(x){
+	console.log(x);
 }

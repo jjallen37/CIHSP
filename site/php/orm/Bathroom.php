@@ -31,7 +31,7 @@ class Bathroom
 			$review_info = $result->fetch_array();
 			return new Bathroom(intval($review_info['bid']),
 					       $review_info['building'],
-					       intval($review_info['floor']),
+					       $review_info['floor'],
 					       $review_info['roomNumber'],
 					       $review_info['description'],
 					       $review_info['gender']);		

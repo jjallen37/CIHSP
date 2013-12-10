@@ -14,8 +14,8 @@ Bathroom.prototype.makeCompactDiv = function() {
 
     var building_div = $("<div></div>");
     building_div.addClass('building');
-    building_div.html(this.building + " " + this.floor + " " + this.roomNumber);
-    cdiv.append(name_div);
+    building_div.html(this.building + " Floor: " + this.floor + " Room: " + this.roomNumber + " Gender: " + this.gender);
+    cdiv.append(building_div);
 
     cdiv.data('building_div', this);
 
