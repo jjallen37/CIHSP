@@ -20,6 +20,7 @@ if (!isset($_GET['bid'])) {
         <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
         <!--<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>-->
         <script src="js/create.js" type="text/javascript"></script>
+        <script src="js/Bathroom.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container-narrow">
