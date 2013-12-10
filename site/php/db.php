@@ -6,12 +6,11 @@ if(mysqli_connect_errno()){
   echo "Failed to connect to MySQL: " . mysql_connect_error();
 }
 
-  // private $bid;
-  // private $building;
-  // private $floor;
-  // private $roomNumber;
-  // private $description;
-  // private $gender;
+  $build_arr = array("Davis Library", "House Undergraduate Library", "Student Union", "Lenoir", "Sitterson", "Murphey Hall", "Chapman Hall", "Phillips Hall");
+  $floor_arr = array("0", "1", "2", "3", "4", "5", "6", "7", "8");
+  $roomNumber_arr = array("003", "039", "302", "Front", "Middle", "Back", "8jd", "LOL1", "LOL2");
+  $description_arr = array("Middle of the floor", "Back of the house", "One by the stairs on the left", "Upside down", "Handicapped bathroom", "I dunno lol");
+  $gender_arr = array("M", "F");
 
 
 for($i=0; $i<50; $i++) {
@@ -23,6 +22,11 @@ for($i=0; $i<50; $i++) {
   // $complete = 0;
   // if (rand(0,99) < 10) {
   //   $complete = 1
+  $building = $build_arr[rand(0,7)];
+  $floor = $floor_arr[rand(0,8)];
+  $roomNumber = $roomNumber_arr[rand(0,8)];
+  $description = $description_arr[rand(0,5)];
+  $gender = $gender_arr[rand(0,1)];
 
   mysqli_query($conn, "INSERT INTO Bathroom (bid, building, floor, roomNumber, description, gender) 
     VALUES (0,'$building','$floor','$roomNumber','$description', '$gender')");
@@ -34,7 +38,7 @@ for($i=0; $i<50; $i++) {
 ?>
 <html>
  <head>
-   <title>Contact List Example Setup</title>
+   <title>CBathroom List Setup</title>
  <head>
  <body>
    <h1>Database Setup Complete</h1>

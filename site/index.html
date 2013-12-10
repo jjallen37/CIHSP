@@ -5,11 +5,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title> C I H S P </title>
+    <title>C I H S P</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/css/index.css" rel="stylesheet" type="text/css">
     <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
     <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
     <script src="js/Bathroom.js"></script>
@@ -20,61 +21,80 @@
     <div class="container-narrow">
         <div class="masthead">
             <h1>Can't I Have Some Privacy?</h1>
-            <h3 class="muted">C I H S P &middot; <a href="about.html">What is CIHSP?</a></h3>
+            <h3 class="muted">C I H S P &middot; <a href="about.html">What is CIHSP?</a>
+            </h3>
         </div>
 
         <hr>
 
         <div class="row-fluid marketing">
             <form id="bathroom-selector">
-                Building:
-                <select id="building">
-                    <option>None Selected</option>
-                    <option>Davis Library</option>
-                    <option>House Undergraduate Library</option>
-                    <option>Student Union</option>
-                    <option>Lenoir</option>
-                    <option>Sitterson</option>
-                    <option>Murphey Hall</option>
-                    <option>Chapman Hall</option>
-                    <option>Phillips Hall</option>
-                </select>
+                <div class="form-group">
+                    <label for="building" class="col-sm-2 control-label">Building</label>
+                    <div class="col-sm-10">
+                        <select id="building" class="form-control">
+                            <option>None Selected</option>
+                            <option>Davis Library</option>
+                            <option>House Undergraduate Library</option>
+                            <option>Student Union</option>
+                            <option>Lenoir</option>
+                            <option>Sitterson</option>
+                            <option>Murphey Hall</option>
+                            <option>Chapman Hall</option>
+                            <option>Phillips Hall</option>
+                        </select>
+                    </div>
+                </div>
 
-                <p></p>
-                <p></p>
+                <br>
 
-                Floor:
-                <select id="floor">
-                    <option>None Selected</option>
-                    <option class="floor 0">0</option>
-                    <option class="floor 1">1</option>
-                    <option class="floor 2">2</option>
-                    <option class="floor 3">3</option>
-                    <option class="floor 4">4</option>
-                    <option class="floor 5">5</option>
-                    <option class="floor 6">6</option>
-                    <option class="floor 7">7</option>
-                    <option class="floor 8">8</option>
-                </select>
+                <div class="form-group">
+                    <label for="floor" class="col-sm-2 control-label">Floor</label>
+                    <div class="col-sm-10">
+                        <select id="floor" class="form-control">
+                            <option>None Selected</option>
+                            <option class="floor 0">0</option>
+                            <option class="floor 1">1</option>
+                            <option class="floor 2">2</option>
+                            <option class="floor 3">3</option>
+                            <option class="floor 4">4</option>
+                            <option class="floor 5">5</option>
+                            <option class="floor 6">6</option>
+                            <option class="floor 7">7</option>
+                            <option class="floor 8">8</option>
+                        </select>
+                    </div>
+                </div>
 
-                <p></p>
-                <p></p>
+                <br>
 
-                Gender:
-                <select id="gender">
-                    <option>None Selected</option>
-                    <option class="male">M</option>
-                    <option class="female">F</option>
-                </select>
+                <div class="form-group">
+                    <label for="gender" class="col-sm-2 control-label">Gender</label>
+                    <div class="col-sm-10">
+                        <select id="gender" class="form-control">
+                            <option>None Selected</option>
+                            <option class="male">M</option>
+                            <option class="female">F</option>
+                        </select>
+                    </div>
+                </div>
             </form>
 
-            <p></p>
+            <br>   
+            <br>
+            <br>
+
             <!-- RESTful list, to be populated by jQuery depending on the above selected values. -->
             <div id="bathroom-list" class="well well-large hidden"></div>
 
-            <p></p>
+            <br>
 
             <button id="submit" class="btn btn-large btn-success">Submit</button>
+
+            <br>
+            <br>
+
+            <div id="error" class="err">You have not made a selection yet. Please select a bathroom and try again.</div>
 
         </div>
 

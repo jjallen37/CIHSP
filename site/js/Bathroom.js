@@ -1,4 +1,3 @@
-
 var Bathroom = function(bathroom_json) {
     this.bid = bathroom_json.id;
     this.building = bathroom_json.building;
@@ -9,17 +8,13 @@ var Bathroom = function(bathroom_json) {
 };
 
 Bathroom.prototype.makeCompactDiv = function() {
-    var cdiv = $("<div></div>");
-    cdiv.addClass('bathroom');
-
     var building_div = $("<div></div>");
-    building_div.addClass('building');
+    building_div.addClass("result");
     building_div.html(this.building + " Floor: " + this.floor + " Room: " + this.roomNumber + " Gender: " + this.gender);
-    cdiv.append(building_div);
+   
+    building_div.data("result", this);
 
-    cdiv.data('building_div', this);
-
-    return cdiv;
+    return building_div;
 };
 
 Bathroom.prototype.makeHeader = function() {
