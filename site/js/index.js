@@ -1,7 +1,7 @@
 var base_url = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site";
-var clear = true;
 
 var bathrooms = new Array();
+var selectedBID = 1;
 
 $(document).ready(function() {
 
@@ -21,8 +21,14 @@ $(document).ready(function() {
     });
 });
 
-$(document).on("click", "#submit", function() {
+$(document)
 
+$(document).on("click", "#submit", function() {
+    if(selectedBID != -1){
+	   window.location = base_url + "/reviews.php?=" + selectedBID;
+    } else {
+        alert("No bathroom has been selected to view reviews. Please try again.");
+    }
 });
 
 $(document).on("change", "#building", function() {
