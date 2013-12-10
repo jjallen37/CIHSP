@@ -40,44 +40,33 @@ if (!isset($_GET['bid'])) {
             <form action="reviews.php" method="POST" id="new_review_form" name="new_review_form" class="form-horizontal" role="form">
                 <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
                 <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <label for="name" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                        <input name="name" type="text" class="form-control" id="inputName" placeholder="Anonymous">
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Anonymous">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputSubject" class="col-sm-2 control-label">Subject</label>
+                    <label for="subject" class="col-sm-2 control-label">Subject</label>
                     <div class="col-sm-10">
-                        <input name="subject" type="text" class="form-control" id="inputSubject" placeholder="Review Subject">
+                        <input name="subject" type="text" class="form-control" id="subject" placeholder="Review Subject">
                     </div>
                 </div>
-<!--                 <div class="form-group">
-                    <label for="inputOverall" class="col-sm-2 control-label">Overall</label>
-                    <div class="col-sm-10">
-                        <div class="btn-group" id="inputOverall">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-star"></span> 
-                            </button>
-                        </div>
-                    </div>
-                </div>
- -->                
                 <div class="form-group">
-                    <label for="inputReview" class="col-sm-2 control-label">Review</label>
+                    <label for="overall" class="col-sm-2 control-label">Overall</label>
                     <div class="col-sm-10">
-                        <textarea name="reviewText" class="form-control" rows="5" id="inputReview" placeholder="Review Text"></textarea>
+                        <select name='overall' class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reviewText" class="col-sm-2 control-label">Review</label>
+                    <div class="col-sm-10">
+                        <textarea name="reviewText" class="form-control" rows="5" id="reviewText" placeholder="Review Text"></textarea>
                     </div>
                 </div>
 

@@ -17,13 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $bath_id = intval($path_components[1]);
     //echo "Bathroom id: $bath_id ";
 
-    // /bathrooms.php/<bid>/reviews
-    if (count($path_components)==4) {
-      header("Content-type: application/json");
-      print(json_encode(Review::reviewsByBID($bath_id)));
-      exit();
-    }
-
     // Look up object via ORM
     $bathroom = Bathroom::findByID($bath_id);
 
@@ -33,6 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       print("Bathroom id: " . $bath_id . " not found.");
       exit();
     }
+    
+    // /bathrooms.php/<bid>/reviews
+    if (count($path_components)==4) {
+      header("Content-type: application/json");
+      print(json_encode(Review::reviewsByBID($bath_id)));
+      exit();
+    }
+
 
     // Normal lookup.
     // Generate JSON encoding as response

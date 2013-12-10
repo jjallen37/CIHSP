@@ -2,6 +2,7 @@
 
 ini_set('display_errors', 'On');
 require_once('orm/Review.php');
+require_once('orm/Bathroom.php');
 
 $path_components = explode('/', $_SERVER['PATH_INFO']);
 
@@ -110,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       exit();
     }
     $bid = $_REQUEST['bid'];
-    print($bid);
 
     // Validate values
     if (!isset($_REQUEST['name'])) {
@@ -135,24 +135,35 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $subject = trim($_REQUEST['subject']);
     if ($subject == "") {
       header("HTTP/1.0 400 Bad Request");
-      print("Bad subject name");
+      print("Bad subject");
       exit();
     }
 
-    $reviewText = 'text';
     if (!isset($_REQUEST['reviewText'])) {
-      $reviewText = trim($_REQUEST['reviewText']);
-      if ($reviewText == "") {
-        header("HTTP/1.0 400 Bad Request");
-        print("Bad reviewText");
-        exit();
-      }
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing review text");
+      exit();
     }
+
+    $reviewText = trim($_REQUEST['reviewText']);
+    if ($reviewText == "") {
+      header("HTTP/1.0 400 Bad Request");
+      print("Bad review text");
+      exit();
+    }
+
+    // Validate values
+    if (!isset($_REQUEST['overall'])) {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing Overall score");
+      exit();
+    }
+    $overall = $_REQUEST['overall'];
 
 
 
     // Create new Review via ORM
-    $new_review = Review::create($bid, $name, $subject,$reviewText,5);
+    $new_review = Review::create($bid, $name, $subject,$reviewText,$overall);
 
     // Report if failed
     if ($new_review == null) {

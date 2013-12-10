@@ -1,11 +1,11 @@
 
-var Bathroom = function(contact_json) {
-    this.bid = contact_json.id;
-    this.building = contact_json.building;
-    this.floor = contact_json.floor;
-    this.roomNumber = contact_json.roomNumber;
-    this.description = contact_json.description;
-    this.gender = contact_json.gender;
+var Bathroom = function(bathroom_json) {
+    this.bid = bathroom_json.id;
+    this.building = bathroom_json.building;
+    this.floor = bathroom_json.floor;
+    this.roomNumber = bathroom_json.roomNumber;
+    this.description = bathroom_json.description;
+    this.gender = bathroom_json.gender;
 };
 
 Bathroom.prototype.makeCompactDiv = function() {
@@ -18,6 +18,24 @@ Bathroom.prototype.makeCompactDiv = function() {
     cdiv.append(building_div);
 
     cdiv.data('building_div', this);
+
+    return cdiv;
+};
+
+Bathroom.prototype.makeHeader = function() {
+    var cdiv = $("<div></div>");
+    cdiv.addClass('bathroom');
+
+    var left_div = $("<div></div>");
+    left_div.addClass("col-sm-6");
+    left_div.html("<h3>"+this.roomNumber + "<br><small>" +
+             this.building+"</small><br><small>Floor " + this.floor + "</small></h3>");
+    cdiv.append(left_div);
+
+    var right_div = $("<div></div>");
+    right_div.addClass("col-sm-6");
+    right_div.html("<h3>Oh god the rating is calculated"+"</h3>");
+    cdiv.append(right_div);
 
     return cdiv;
 };

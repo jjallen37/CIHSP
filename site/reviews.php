@@ -24,40 +24,29 @@ if (!isset($_GET['bid'])) {
     <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
     <script src="js/reviews.js"></script>
     <script src="js/Review.js"></script>
+    <script src="js/Bathroom.js"></script>
 </head>
 
 <body>
     <div class="container-narrow">
-        <form> <input type='hidden' id='bid' value=<?php echo $_GET["bid"]; ?>></form>
         <div class="masthead">
             <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>
 
         <hr>
 
-        <button id='newReview'>Write a Review</button>
         <!-- bathroom info -->
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>SN008<br>
-                    <small>Sitterson</small><br>
-                    <small>0th Floor</small>
-                </h3>
-            </div>
-            <div class="col-sm-6">
-                <h3>Overall - 5/5<br>
-                    <small>Cleanliness - 5/5</small><br>
-                    <small>Congestion - 5/5</small><br>
-                    <small>Convenience - 5/5</small>
-                </h3>
-            </div>
+        <div id='bathroomHeader' class="row">
         </div>
 
         <p></p>
 
         <div id="review_list">
         </div>
-
+        <form action="create.php">
+            <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
+            <button type="submit" id="newReview" class="btn btn-large btn-success">Write a Review</button>
+        </form>
         <hr>
 
         <div class="footer">
