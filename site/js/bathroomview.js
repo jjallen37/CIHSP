@@ -1,4 +1,4 @@
-var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site";
+var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site";
 var reviewCount = 0;
 var avgReview = 0;
 $(document).ready(function () {
@@ -13,7 +13,7 @@ $(document).ready(function () {
 		},
 		error: function(jqXHR, status, error) {
 			alert("Invalid Bathroom ID");
-			window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index";
+			window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/index";
 		}});
 
 	$(document).on('click', '#newReview',

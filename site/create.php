@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_GET['bid'])) {
-    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index.html");
+    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/index.html");
     exit;
 }
 

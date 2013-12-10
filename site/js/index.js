@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 $(document).on("click", "#submit", function() {
     if(selectedBID != -1){
-	   window.location = base_url + "/reviews.php?bid=" + selectedBID;
+	   window.location = base_url + "/bathroomview.php?bid=" + selectedBID;
     } else {
         p("Error");
         $(".err").fadeIn(1000).show();
@@ -53,7 +53,7 @@ $(document).on("change", "#building", function() {
 $(document).on("change", "#floor", function() {
 	var gender = $("#gender").val();
     var building = $("#building").val();
-    var floor = $("#floor").val();	
+    var floor = $("#floor").bval();	
 
     if (floor != "None Selected"){
 		populateBasedOnFloor(floor);

@@ -1,3 +1,12 @@
+<?php
+
+if (!isset($_GET['bid'])) {
+    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/index.html");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,48 +14,45 @@
 
 <head>
     <meta charset="utf-8">
-    <title>&middot; C I H S P &middot;</title>
+    <title>C I H S P</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="reviews.css" rel="stylesheet">
+    <link href="bootstrap/css/index.css" rel="stylesheet">
     <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
     <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
-    <script src="js/reviews.js"></script>
+    <script src="js/bathroomview.js"></script>
     <script src="js/Review.js"></script>
+    <script src="js/Bathroom.js"></script>
 </head>
 
 <body>
     <div class="container-narrow">
         <div class="masthead">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="index.html">Home</a>
+                </li>
+            </ul>
             <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>
 
         <hr>
 
         <!-- bathroom info -->
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>SN008<br>
-                    <small>Sitterson</small><br>
-                    <small>0th Floor</small>
-                </h3>
-            </div>
-            <div class="col-sm-6">
-                <h3>Overall - 5/5<br>
-                    <small>Cleanliness - 5/5</small><br>
-                    <small>Congestion - 5/5</small><br>
-                    <small>Convenience - 5/5</small>
-                </h3>
-            </div>
+        <div id='bathroomHeader' class="row">
         </div>
+
+        <form style="text-align:right;" action="create.php">
+            <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
+            <button type="submit" id="newReview" class="btn btn-large btn-primary">Write a Review</button>
+        </form>
 
         <p></p>
 
         <div id="review_list">
         </div>
-
+        
         <hr>
 
         <div class="footer">
