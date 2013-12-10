@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['bid'])) {
+if (!isset($_GET['bid'])) {
     header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index.html");
     exit;
 }
@@ -38,7 +38,7 @@ if (!isset($_SESSION['bid'])) {
             </div>
             
             <form action="reviews.php" method="POST" id="new_review_form" name="new_review_form" class="form-horizontal" role="form">
-                <input type='hidden' id='bid' name='bid' value=<?php echo $_SESSION["bid"]; ?>>
+                <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">

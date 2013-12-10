@@ -1,7 +1,6 @@
 <?php
-session_start();
 
-if (!isset($_SESSION['bid'])) {
+if (!isset($_GET['bid'])) {
     header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index.html");
     exit;
 }
@@ -29,13 +28,14 @@ if (!isset($_SESSION['bid'])) {
 
 <body>
     <div class="container-narrow">
-        <form> <input type='hidden' id='bid' value=<?php echo $_SESSION["bid"]; ?>></form>
+        <form> <input type='hidden' id='bid' value=<?php echo $_GET["bid"]; ?>></form>
         <div class="masthead">
             <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>
 
         <hr>
 
+        <button id='newReview'>Write a Review</button>
         <!-- bathroom info -->
         <div class="row">
             <div class="col-sm-6">

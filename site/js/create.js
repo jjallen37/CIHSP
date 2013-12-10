@@ -1,8 +1,6 @@
 var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/php";
 
 $(document).ready(function () {
-	bid = $('#bid').val();
-
 	// Add new review 
 	$('#new_review_form').on('submit',
 		function (e) {

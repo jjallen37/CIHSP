@@ -1,7 +1,10 @@
 var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/php";
 
 $(document).ready(function () {
-	bid = $('#bid').val();
+	$('#newReview').on('click',
+		function (e) {
+			alert("New review!");
+		});
 
 	// Load review list and display it
 	$.ajax(url_base + "/bathrooms.php/"+bid+"/reviews/",
