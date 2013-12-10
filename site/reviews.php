@@ -39,14 +39,15 @@ if (!isset($_GET['bid'])) {
         <div id='bathroomHeader' class="row">
         </div>
 
+        <form style="text-align:right;" action="create.php">
+            <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
+            <button type="submit" id="newReview" class="btn btn-large btn-success">Write a Review</button>
+        </form>
+
         <p></p>
 
         <div id="review_list">
         </div>
-        <form action="create.php">
-            <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
-            <button type="submit" id="newReview" class="btn btn-large btn-success">Write a Review</button>
-        </form>
         <hr>
 
         <div class="footer">
