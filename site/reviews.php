@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_GET['bid'])) {
-    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index.html");
+    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/index.html");
     exit;
 }
 
@@ -14,12 +14,12 @@ if (!isset($_GET['bid'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>&middot; C I H S P &middot;</title>
+    <title>C I H S P</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="reviews.css" rel="stylesheet">
+    <link href="bootstrap/css/index.css" rel="stylesheet">
     <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
     <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
     <script src="js/reviews.js"></script>
@@ -30,6 +30,10 @@ if (!isset($_GET['bid'])) {
 <body>
     <div class="container-narrow">
         <div class="masthead">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="index.html">Home</a>
+                </li>
+            </ul>
             <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>
 
@@ -45,7 +49,7 @@ if (!isset($_GET['bid'])) {
         </div>
         <form action="create.php">
             <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
-            <button type="submit" id="newReview" class="btn btn-large btn-success">Write a Review</button>
+            <button type="submit" id="newReview" class="btn btn-large btn-primary">Write a Review</button>
         </form>
         <hr>
 
