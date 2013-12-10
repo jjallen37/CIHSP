@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['bid'])) {
+    header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/index.html");
+    exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +29,7 @@
 
 <body>
     <div class="container-narrow">
+        <form> <input type='hidden' id='bid' value=<?php echo $_SESSION["bid"]; ?>></form>
         <div class="masthead">
             <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>

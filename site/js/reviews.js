@@ -1,17 +1,21 @@
 var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/php";
 
 $(document).ready(function () {
-	var TEMP_BID = 1; //Hardcoded bathroom in the db
+	bid = $('#bid').val();
 
 	// Load review list and display it
-	$.ajax(url_base + "/bathrooms.php/"+TEMP_BID+"/reviews/",
+	$.ajax(url_base + "/bathrooms.php/"+bid+"/reviews/",
 		{type: "GET",
 		dataType: "json",
 		success: function(review_ids, status, jqXHR) {
 			alert("success");
-			for (var i=0; i<review_ids.length; i++) {
-				console.log(review_ids[i]);
-				load_review_item(review_ids[i]);
+			if (review_ids===null) {
+				$('#review_list').html("No Reviews yet");
+			}else{
+				for (var i=0; i<review_ids.length; i++) {
+					console.log(review_ids[i]);
+					load_review_item(review_ids[i]);
+				}
 			}
 		},
 		error: function(jqXHR, status, error) {

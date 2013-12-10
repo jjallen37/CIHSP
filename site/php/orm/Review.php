@@ -55,11 +55,25 @@ class Review
 			}
 			$id_array = array();
 			while ($next_row = $result->fetch_array()) {
-				$id_array[] = $next_row['rid'];
+				$id_array[] = intval($next_row['rid']);
 			}
 			return $id_array;
 		}
 		return null;
+	}
+
+	public static function getAllIDs(){
+		$mysqli = new mysqli("classroom.cs.unc.edu", "jjallen", "classroomjja", "jjallendb");
+
+		$result = $mysqli->query("SELECT rid FROM Review");
+		$id_array = array();
+
+		if($result){
+			while($next_row = $result->fetch_array()) {
+				$id_array[] = intval($next_row['rid']);
+			}
+		}
+		return $id_array;
 	}
 
 	private function __construct($rid, $bid, $name, $subject, $reviewText, $overall) {

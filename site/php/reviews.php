@@ -104,6 +104,15 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
   } else { // Creating a new Review item
 
     // Validate values
+    if (!isset($_REQUEST['bid'])) {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing bid");
+      exit();
+    }
+    $bid = $_REQUEST['bid'];
+    print($bid);
+
+    // Validate values
     if (!isset($_REQUEST['name'])) {
       header("HTTP/1.0 400 Bad Request");
       print("Missing name");
@@ -141,8 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     }
 
 
+
     // Create new Review via ORM
-    $new_review = Review::create(1, $name, $subject,$reviewText,5);
+    $new_review = Review::create($bid, $name, $subject,$reviewText,5);
 
     // Report if failed
     if ($new_review == null) {
