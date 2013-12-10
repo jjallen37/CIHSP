@@ -1,10 +1,10 @@
 var base_url = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site";
 
 var bathrooms = new Array();
-var selectedBID = 1;
+var selectedBID = -1;
 
 $(document).ready(function() {
-
+    $(".err").hide();
 	$("#building").val("None Selected");
 	$("#floor").val("None Selected");
 	$("#gender").val("None Selected");
@@ -21,13 +21,13 @@ $(document).ready(function() {
     });
 });
 
-$(document)
-
 $(document).on("click", "#submit", function() {
     if(selectedBID != -1){
-	   window.location = base_url + "/reviews.php?=" + selectedBID;
+	   window.location = base_url + "/reviews.php?bid=" + selectedBID;
     } else {
-        alert("No bathroom has been selected to view reviews. Please try again.");
+        p("Error");
+        $(".err").fadeIn(1000).show();
+        $(".err").delay(3000).fadeOut(1000);
     }
 });
 
@@ -89,6 +89,13 @@ $(document).on("change", "#gender", function() {
 	}else {
 		$("#bathroom-list").empty();
 	}
+});
+
+$(document).on("click", ".result", function(){
+    var b = $(this).data("result");
+    p(b)
+    selectedBID = b.bid;
+    p(selectedBID)
 });
 
 var addBathroom = function(bid) {

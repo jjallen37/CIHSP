@@ -1,6 +1,6 @@
 
 var Bathroom = function(contact_json) {
-    this.bid = contact_json.id;
+    this.bid = contact_json.bid;
     this.building = contact_json.building;
     this.floor = contact_json.floor;
     this.roomNumber = contact_json.roomNumber;
@@ -9,15 +9,11 @@ var Bathroom = function(contact_json) {
 };
 
 Bathroom.prototype.makeCompactDiv = function() {
-    var cdiv = $("<div></div>");
-    cdiv.addClass('bathroom');
-
     var building_div = $("<div></div>");
-    building_div.addClass('building');
+    building_div.addClass("result");
     building_div.html(this.building + " Floor: " + this.floor + " Room: " + this.roomNumber + " Gender: " + this.gender);
-    cdiv.append(building_div);
+   
+    building_div.data("result", this); 
 
-    cdiv.data('building_div', this);
-
-    return cdiv;
+    return building_div;
 };
