@@ -33,8 +33,8 @@ if (!isset($_GET['bid'])) {
             </div>
             <hr>
 
-            <div id='bathroomHeader'>
-
+            <!-- bathroom info -->
+            <div id='bathroomHeader' class="row">
             </div>
             
             <form action="reviews.php" method="POST" id="new_review_form" name="new_review_form" class="form-horizontal" role="form">
