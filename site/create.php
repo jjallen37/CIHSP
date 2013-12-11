@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (!isset($_GET['bid'])) {
     header("Location: http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site/index.html");
@@ -7,10 +6,10 @@ if (!isset($_GET['bid'])) {
 }
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
     <!-- NOTE: We use Twitter Bootstrap for layout and responsiveness. We want this application to be largely based in the mobile environment. -->
     <head>
-        <meta name="generator" content="HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.12), see www.w3.org">
         <meta charset="utf-8">
         <title>
             Add A Review
@@ -58,7 +57,7 @@ if (!isset($_GET['bid'])) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="overall" class="col-sm-2 control-label">Overall</label>
+                    <label class="col-sm-2 control-label">Overall</label>
                     <div class="col-sm-10">
                         <select name='overall' class="form-control">
                             <option>1</option>
