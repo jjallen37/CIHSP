@@ -51,6 +51,5 @@ var load_review_item = function (id) {
 			$('#review_list').append(t.makeCompactDiv());
 		},
 		error: function(jqXHR, status, error) {
-			alert("faliure:"+jqXHR.responseText);
 		}});
 };

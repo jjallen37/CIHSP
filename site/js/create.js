@@ -24,7 +24,7 @@ $(document).ready(function () {
 				dataType: "json",
 				data: $(this).serialize(),
 				success: function(review_json, status, jqXHR) {
-					window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/reviews.php?bid="+bid;
+					window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jjallen/site/bathroomview.php?bid="+bid;
 				},
 				error: function(jqXHR, status, error) {
 					alert("faliure:"+jqXHR.responseText);
