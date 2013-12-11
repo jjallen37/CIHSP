@@ -5,6 +5,8 @@ var Bathroom = function(bathroom_json) {
     this.roomNumber = bathroom_json.roomNumber;
     this.desc = bathroom_json.description;
     this.gender = bathroom_json.gender;
+    this.count = bathroom_json.count;
+    this.avg = bathroom_json.avg;
 };
 
 Bathroom.prototype.makeCompactDiv = function() {
@@ -21,7 +23,6 @@ Bathroom.prototype.makeCompactDiv = function() {
 
     var descrip = $("<div></div>");
     descrip.html("<small>Description: " + this.desc + "</small>");
-    //console.log(this.desc);
     bathroomDiv.append(descrip);
 
     bathroomDiv.data("bathroom", this);
@@ -34,14 +35,14 @@ Bathroom.prototype.makeHeader = function() {
     cdiv.addClass('bathroom');
 
     var left_div = $("<div></div>");
-    left_div.addClass("col-sm-6");
+    left_div.addClass("col-sm-8");
     left_div.html("<h3>"+this.roomNumber + "<br><small>" +
              this.building+"</small><br><small>Floor " + this.floor + "</small></h3>");
     cdiv.append(left_div);
 
     var right_div = $("<div></div>");
-    right_div.addClass("col-sm-6");
-    right_div.html("<h3>Oh god the rating is calculated"+"</h3>");
+    right_div.addClass("col-sm-4");
+    right_div.html("<h3>"+this.count+" reviews</h3>");
     cdiv.append(right_div);
 
     return cdiv;

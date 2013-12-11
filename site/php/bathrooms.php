@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       ($path_components[1] != "")) {
     // Interpret <id> as integer
     $bath_id = intval($path_components[1]);
-    //echo "Bathroom id: $bath_id ";
 
     // Look up object via ORM
     $bathroom = Bathroom::findByID($bath_id);
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
       exit();
     }
 
-
     // Normal lookup.
     // Generate JSON encoding as response
     header("Content-type: application/json");
@@ -43,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
   }
     
-    //ID Not specified, want all IDs
-    //echo "Got to here";
-    header("Content-type: application/json");
-    print(json_encode(Bathroom::getAllIDs()));
-    exit();
+  //ID Not specified, want all IDs
+  header("Content-type: application/json");
+  print(json_encode(Bathroom::getAllIDs()));
+  exit();
 }
 
 // If here, none of the above applied and URL could
