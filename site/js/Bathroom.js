@@ -42,7 +42,7 @@ Bathroom.prototype.makeHeader = function() {
 
     var right_div = $("<div></div>");
     right_div.addClass("col-sm-4");
-    right_div.html("<h3>"+this.count+" reviews</h3>");
+    right_div.html("<h3>"+this.count+" reviews<br><small>"+this.avg+" Average Rating</small></h3>");
     cdiv.append(right_div);
 
     return cdiv;

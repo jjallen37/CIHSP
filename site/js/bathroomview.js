@@ -1,6 +1,5 @@
 var url_base = "http://wwwp.cs.unc.edu/Courses/comp426-f13/jamesml/site";
 var reviewCount = 0;
-// var reviewAvg = 0;
 window.reviewAvg = 0;
 $(document).ready(function () {
 	var bid = $('#bid').val();
@@ -8,6 +7,7 @@ $(document).ready(function () {
 	// Load review list and display it
 	$.ajax(url_base + "/php/bathrooms.php/"+bid+"/reviews/",
 		{type: "GET",
+		async:false,
 		dataType: "json",
 		success: function(review_ids, status, jqXHR) {
 			if (review_ids===null) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
 		dataType: "json",
 		success: function(bathroom_json, status, jqXHR) {
 			bathroom_json.count = reviewCount;
-			bathroom_json.avg = reviewAvg;
+			bathroom_json.avg = Math.round(window.reviewAvg/reviewCount * 100) / 100;
 			br = new Bathroom(bathroom_json);
 			$('#bathroomHeader').html(br.makeHeader());
 		},
@@ -47,9 +47,11 @@ $(document).ready(function () {
 var load_review_item = function (id) {
 	$.ajax(url_base + "/php/reviews.php/" + id,
 		{type: "GET",
+		async:false,
 		dataType: "json",
 		success: function(review_json, status, jqXHR) {
 			var t = new Review(review_json);
+			window.reviewAvg += t.overall;
 			$('#review_list').append(t.makeCompactDiv());
 		},
 		error: function(jqXHR, status, error) {
