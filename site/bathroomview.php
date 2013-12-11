@@ -30,13 +30,12 @@ if (!isset($_GET['bid'])) {
 <body>
     <div class="container-narrow">
         <div class="masthead">
-            <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="index.html">Home</a>
-                </li>
-            </ul>
-            <h3 class="muted">Can't I Have Some Privacy?</h3>
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <h3 class="muted">Can't I Have Some Privacy?</h3>
         </div>
-
         <hr>
 
         <!-- bathroom info -->
@@ -59,7 +58,6 @@ if (!isset($_GET['bid'])) {
             Building, floor, or bathroom missing? Email us at: CIHSP@gmail.com.
             <p>&copy; Allen/Martin 2013</p>
         </div>
-
     </div>
     <!-- /container -->
 

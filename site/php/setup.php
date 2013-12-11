@@ -35,7 +35,7 @@ echo "<br>";
 
 // Create tables
 $sql="CREATE TABLE Bathroom(bid INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-	building VARCHAR(25), floor VARCHAR(2), roomNumber VARCHAR(25), description VARCHAR(255), gender VARCHAR(25))";
+	building VARCHAR(25), floor VARCHAR(2), roomNumber VARCHAR(25), description text, gender VARCHAR(25))";
 
 // Execute query
 if (mysqli_query($con,$sql))

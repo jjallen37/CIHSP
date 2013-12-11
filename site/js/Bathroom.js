@@ -3,18 +3,30 @@ var Bathroom = function(bathroom_json) {
     this.building = bathroom_json.building;
     this.floor = bathroom_json.floor;
     this.roomNumber = bathroom_json.roomNumber;
-    this.description = bathroom_json.description;
+    this.desc = bathroom_json.description;
     this.gender = bathroom_json.gender;
 };
 
 Bathroom.prototype.makeCompactDiv = function() {
-    var building_div = $("<div></div>");
-    building_div.addClass("result");
-    building_div.html(this.building + " Floor: " + this.floor + " Room: " + this.roomNumber + " Gender: " + this.gender);
-   
-    building_div.data("result", this);
+    var bathroomDiv = $("<div></div>");
+    bathroomDiv.addClass("bathroom well well-sm");
 
-    return building_div;
+    var titleDiv = $("<div></div>");
+    titleDiv.html("<b>" + this.building + " Floor: " + this.floor + "</b>");
+    bathroomDiv.append(titleDiv);
+
+    var roomAndGender = $("<div></div>");
+    roomAndGender.html("Room: " + this.roomNumber + "<br>Gender: " + this.gender);
+    bathroomDiv.append(roomAndGender);
+
+    var descrip = $("<div></div>");
+    descrip.html("<small>Description: " + this.desc + "</small>");
+    //console.log(this.desc);
+    bathroomDiv.append(descrip);
+
+    bathroomDiv.data("bathroom", this);
+
+    return bathroomDiv;
 };
 
 Bathroom.prototype.makeHeader = function() {

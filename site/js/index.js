@@ -5,6 +5,7 @@ var selectedBID = -1;
 
 $(document).ready(function() {
     $(".err").hide();
+    $("#submit").hide();
 	$("#building").val("None Selected");
 	$("#floor").val("None Selected");
 	$("#gender").val("None Selected");
@@ -25,13 +26,15 @@ $(document).on("click", "#submit", function() {
     if(selectedBID != -1){
 	   window.location = base_url + "/bathroomview.php?bid=" + selectedBID;
     } else {
-        p("Error");
+        //p("Error");
         $(".err").fadeIn(1000).show();
         $(".err").delay(3000).fadeOut(1000);
     }
 });
 
 $(document).on("change", "#building", function() {
+    $("#submit").hide().fadeOut(500);
+
 	var gender = $("#gender").val();
     var building = $("#building").val();
     var floor = $("#floor").val();    
@@ -51,9 +54,11 @@ $(document).on("change", "#building", function() {
 });
 
 $(document).on("change", "#floor", function() {
+    $("#submit").hide().fadeOut(500);
+
 	var gender = $("#gender").val();
     var building = $("#building").val();
-    var floor = $("#floor").bval();	
+    var floor = $("#floor").val();	
 
     if (floor != "None Selected"){
 		populateBasedOnFloor(floor);
@@ -71,6 +76,8 @@ $(document).on("change", "#floor", function() {
 });
 
 $(document).on("change", "#gender", function() {
+    $("#submit").hide().fadeOut(500);
+
 	var gender = $("#gender").val();
     var building = $("#building").val();
     var floor = $("#floor").val();
@@ -91,11 +98,15 @@ $(document).on("change", "#gender", function() {
 	}
 });
 
-$(document).on("click", ".result", function(){
-    var b = $(this).data("result");
-    p(b)
+$(document).on("click", ".bathroom", function(){
+    var b = $(this).data("bathroom");
+    //p(b)
     selectedBID = b.bid;
-    p(selectedBID)
+    $(".highlighted").removeClass("highlighted");
+    $(this).addClass("highlighted");
+    //p(selectedBID)
+    //
+    $("#submit").show().fadeIn(3000);
 });
 
 var addBathroom = function(bid) {
@@ -127,7 +138,7 @@ var populateBasedOnBuilding = function(building) {
 	if(hidden){
 		$("#bathroom-list").toggleClass("hidden");
 	}
-	$("#bathroom-list").empty();
+    $("#bathroom-list").empty().fadeOut(1000);
 
     var floor = $("#floor").val();
     var gender = $("#gender").val();
@@ -143,26 +154,26 @@ var populateBasedOnBuilding = function(building) {
     if (floor != "None Selected" && gender != "None Selected") {
         for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (floor == "None Selected" && gender != "None Selected"){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building && bathrooms[i].gender == gender) {
                 
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (floor != "None Selected" && gender == "None Selected"){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building && bathrooms[i].floor == floor) {
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else {
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building) {
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }
@@ -173,7 +184,7 @@ var populateBasedOnFloor = function(floor){
 	if(hidden){
 		$("#bathroom-list").toggleClass("hidden");
 	}
-	$("#bathroom-list").empty();
+    $("#bathroom-list").empty().fadeOut(1000);
 
     var building = $("#building").val();
     var gender = $("#gender").val();
@@ -192,7 +203,7 @@ var populateBasedOnFloor = function(floor){
         for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
                 //p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (building == "None Selected" && gender != "None Selected"){ 
@@ -201,7 +212,7 @@ var populateBasedOnFloor = function(floor){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
                 //p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (building != "None Selected" && gender == "None Selected"){ 
@@ -213,7 +224,7 @@ var populateBasedOnFloor = function(floor){
     		// p(bathrooms[i].building);
             if (bathrooms[i].floor == floor && bathrooms[i].building == building) {
             	//p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else { 
@@ -222,7 +233,7 @@ var populateBasedOnFloor = function(floor){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].floor == floor) {
             	//p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }
@@ -233,7 +244,7 @@ var populateBasedOnGender = function(gender){
 	if(hidden){
 		$("#bathroom-list").toggleClass("hidden");
 	}
-	$("#bathroom-list").empty();
+    $("#bathroom-list").empty().fadeOut(1000);
 
     var building = $("#building").val();
     var floor = $("#floor").val();
@@ -247,7 +258,7 @@ var populateBasedOnGender = function(gender){
    	//p("Have all three");
         for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].building == building && bathrooms[i].floor == floor && bathrooms[i].gender == gender) {
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (building == "None Selected" && floor != "None Selected"){ 
@@ -256,7 +267,7 @@ var populateBasedOnGender = function(gender){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].gender == gender && bathrooms[i].floor == floor) {
                 //p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else if (building != "None Selected" && floor == "None Selected"){ 
@@ -265,7 +276,7 @@ var populateBasedOnGender = function(gender){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].gender == gender && bathrooms[i].building == building) {
             	//p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }else { 
@@ -274,7 +285,7 @@ var populateBasedOnGender = function(gender){
     	for (var i = 0; i < bathrooms.length; i++) {
             if (bathrooms[i].gender == gender) {
             	//p("Match found");
-                $("#bathroom-list").append(bathrooms[i].makeCompactDiv());
+                $("#bathroom-list").append(bathrooms[i].makeCompactDiv()).hide().fadeIn(500);
             }
         }
     }

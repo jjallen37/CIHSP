@@ -1,16 +1,31 @@
-.result{
+.result
+{
 	margin-bottom: 3px;
-	text-align: center;
 }
 
-.result:hover{
+.result:hover
+{
 	font-weight: bold;
 }
 
-.btn-primary{
-  color: #ffffff;
-  background-color: #428bca;
-  border-color: #357ebd;
+.btn-primary
+{
+	color: #ffffff;
+	background-color: #428bca;
+	border-color: #357ebd;
+}
+
+#submit
+{
+	margin: 0 auto;
+}
+
+.highlighted
+{
+	color: #ffffff;
+	background-color: #428bca;
+	border-color: #357ebd;
+
 }
 
 .review

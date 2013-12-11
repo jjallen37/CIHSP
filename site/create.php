@@ -17,6 +17,7 @@ if (!isset($_GET['bid'])) {
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap/css/index.css" rel="stylesheet">  
         <script src="/Courses/comp426-f13/jquery-1.10.2.js"></script>
         <!--<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>-->
         <script src="js/create.js" type="text/javascript"></script>
@@ -25,12 +26,11 @@ if (!isset($_GET['bid'])) {
     <body>
         <div class="container-narrow">
             <div class="masthead">
-                <h1>
-                    Can't I Have Some Privacy?
-                </h1>
-                <h3 class="muted">
-                    C I H S P &#183; <a href="about.html">What is CIHSP?</a>
-                </h3>
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <h3 class="muted">Can't I Have Some Privacy?</h3>
             </div>
             <hr>
 
@@ -38,6 +38,11 @@ if (!isset($_GET['bid'])) {
             <div id='bathroomHeader' class="row">
             </div>
             
+            <br>
+            <br>
+
+            <hr>
+
             <form action="reviews.php" method="POST" id="new_review_form" name="new_review_form" class="form-horizontal" role="form">
                 <input type='hidden' id='bid' name='bid' value=<?php echo $_GET["bid"]; ?>>
                 <div class="form-group">
